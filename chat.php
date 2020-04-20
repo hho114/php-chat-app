@@ -3,26 +3,21 @@ session_start();
 ob_start();
 header("Content-type: application/json");
 date_default_timezone_set('UTC');
+
+//handle user not log in
+if (!isset($_SESSION['name'])) {
+    header("Location: http://ecs.fullerton.edu/~cs431s42/assignment3/");
+}
+
 //connect to database
 // $db = mysqli_connect('localhost', 'username', 'password', 'database');
-// $db = mysqli_connect('mariadb', 'cs431s42', '' ,'cs431s42');
-$db = mysqli_connect('localhost', 'root', 'root', 'chat_db');
-
-
+$db = mysqli_connect('mariadb', 'cs431s42', '' ,'cs431s42');
+// $db = mysqli_connect('localhost', 'root', 'root', 'chat_db');
 
 if (mysqli_connect_errno()) {
     echo '<p>Error: Could not connect to database.<br/>
    Please try again later.</p>';
     exit;
-}
-
-if (!isset($_SESSION['name'])) {
-
-    header("Location: /index.php");
-}
-
-function get_user_id()
-{
 }
 
 

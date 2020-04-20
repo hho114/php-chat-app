@@ -1,18 +1,20 @@
+
 <?php
+//Create a new User page
 
 session_start();
 
-//user already login go to chat page
+//if user already login go to chat page
 if (isset($_SESSION['name'])) {
-	header("Location: /chat.html");
+	header("Location: http://ecs.fullerton.edu/~cs431s42/assignment3/chat.html");
 }
 
-// $db = mysqli_connect('mariadb', 'cs431s42', '' ,'cs431s42');
-$db = mysqli_connect('localhost', 'root', 'root', 'chat_db');
+$db = mysqli_connect('mariadb', 'cs431s42', '' ,'cs431s42');
+// $db = mysqli_connect('localhost', 'root', 'root', 'chat_db');
 $message = '';
 
 if (!empty($_POST['name'])) :
-    $token_id = session_id();
+    $token_id = session_id();//use session id to make sure no indenticaly account for security 
 
 	// Enter the new user in the database
 
@@ -27,12 +29,11 @@ if (!empty($_POST['name'])) :
 		$message = 'Successfully created new user';
 		$_SESSION['name'] = $_POST['name'];
 		$query = "SELECT uid FROM user WHERE name = '$name' AND token_id = '$token_id'";
-
 		$res = mysqli_query($db, $query);
 		$res = mysqli_fetch_assoc($res);
 		$_SESSION['uid'] = (int) $res['uid'];
-
-		header("Location: /chat.html");
+		//if user create success then go to chat page
+		header("Location: http://ecs.fullerton.edu/~cs431s42/assignment3/chat.html");
 	else :
 		$message = 'Sorry there must have been an issue creating your account';
 	endif;
@@ -78,7 +79,6 @@ endif;
 
 		</div>
 	</div>
-
 
 
 

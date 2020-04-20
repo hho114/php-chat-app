@@ -1,10 +1,5 @@
 
 
-
-// $(document).ready(function() {
-//     pollServer();
-// });
-
 var pollServer = function () {
     $.get('chat.php', function (result) {
 
@@ -16,10 +11,9 @@ var pollServer = function () {
 
         $.each(result.messages, function (idx) {
 
-
             var chatBubble;
             var colors = ['#7FFFD4', '#FFEBCD', '#6495ED', '#FF8C00', '#8FBC8F', '#F08080', '#87CEFA', '#FF69B4', '#40E0D0', "#F5DEB3"];
-            var random_color = colors[this.usr_id % 10];
+            var random_color = colors[this.usr_id % 10];//pick random color base on user id
 
             if (this.sent_by == 'self') {
                 chatBubble = $('<div class="row bubble-sent pull-right">' +
@@ -69,3 +63,4 @@ $('#sendMessageBtn').on('click', function (event) {
     });
 
 });
+

@@ -10,8 +10,7 @@ CREATE TABLE user
 
 CREATE TABLE chatlog
 (
-    id INT(11)
-    AUTO_INCREMENT PRIMARY KEY,
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
     message TEXT,
     sent_by VARCHAR(50),
     usr_id INT(11) NOT NULL,
