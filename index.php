@@ -7,26 +7,26 @@ if (isset($_SESSION['name'])) {
 	header("Location: /chat.html");
 }
 
-// require 'database.php';
-
+// $db = mysqli_connect('mariadb', 'cs431s42', '' ,'cs431s42');
 $db = mysqli_connect('localhost', 'root', 'root', 'chat_db');
 $message = '';
 
 if (!empty($_POST['name'])) :
+    $token_id = session_id();
 
 	// Enter the new user in the database
 
-	$query = "INSERT INTO user (name) VALUES (?)";
+	$query = "INSERT INTO user (name, token_id) VALUES (?,?)";
 
 	$stmt = $db->prepare($query);
 
-	$stmt->bind_param('s', $_POST['name']);
+	$stmt->bind_param('ss', $_POST['name'],$token_id);
 
 	if ($stmt->execute()) :
 		$name = $_POST['name'];
 		$message = 'Successfully created new user';
 		$_SESSION['name'] = $_POST['name'];
-		$query = "SELECT uid FROM user WHERE name = '$name'";
+		$query = "SELECT uid FROM user WHERE name = '$name' AND token_id = '$token_id'";
 
 		$res = mysqli_query($db, $query);
 		$res = mysqli_fetch_assoc($res);

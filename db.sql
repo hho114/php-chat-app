@@ -3,7 +3,8 @@
 CREATE TABLE user
 (
     uid INT(11) AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(25) NOT NULL
+    name VARCHAR(25) NOT NULL,
+    token_id VARCHAR(50)
 
 );
 
