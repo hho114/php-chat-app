@@ -17,10 +17,7 @@ Huy
     - It will redirect user to fullerton.edu website once user logout.
 
 ## Problem
-    - For some reason, user name doesn't show up on Chrome but it showed up on Firefox, Explorer.
-    - Link to checkout error screenshot
-    http://ecs.fullerton.edu/~cs431s41/assignment3/error.html
-
+    - None
 ---------------------------------------------------------------------------------------
 			                chat.php file contents
 ---------------------------------------------------------------------------------------
